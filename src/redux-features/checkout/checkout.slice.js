@@ -1,10 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import { baniBaseUrl } from '../../api_calls/call_url'
 
 
 
 //Creating initialstate
 const initialState = {
-    itemsData: null,
+    paymentDetails: {},
     isLoading: false,
     isSuccess: false,
     isError: false,
@@ -12,9 +13,12 @@ const initialState = {
 }
 
 
-//Section for checkout
-export const checkoutData = createAsyncThunk('checkout/item-checkout', async(checkoutData, thunkAPI) =>{
+
+//Fetch the payment details
+export const getDetails = createAsyncThunk('checkout/get-details', async(param, thunkAPI) =>{
     try {
+        return await (await baniBaseUrl.get(param)).data.data
+        
     } catch (error) {
         const message = (
             error.response && error.response.data && error.response.data.message
@@ -42,14 +46,15 @@ const checkoutSlice = createSlice({
     },
     extraReducers: (builder) =>{
         builder
-        .addCase(checkoutData.pending, (state)=>{
+        .addCase(getDetails.pending, (state)=>{
             state.isLoading = true
         })
-        .addCase(checkoutData.fulfilled, (state,action)=>{
+        .addCase(getDetails.fulfilled, (state,action)=>{
             state.isLoading = false;
             state.isSuccess = true;
+            state.paymentDetails = action.payload
         })
-        .addCase(checkoutData.rejected, (state,action)=>{
+        .addCase(getDetails.rejected, (state,action)=>{
             state.isError = true;
             state.isLoading = false;
             state.isSuccess = false;
