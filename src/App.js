@@ -1,9 +1,10 @@
 import React from 'react';
+import CheckoutDefaultLayout from './pages/checkout/checkoutLayout';
 
 function App() {
   return (
-    <div className="text-3xl font-bold underline">
-      <h2>welcome</h2>
+    <div className="w-[100%] h-[100%]">
+      <CheckoutDefaultLayout />
     </div>
   );
 }

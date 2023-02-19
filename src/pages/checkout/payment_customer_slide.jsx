@@ -1,4 +1,5 @@
 import { AiOutlineShop } from 'react-icons/ai'
+import SectionHeader from '../../components/headings';
 
 const PaymentCustomerSlide = () => {
     return ( 
@@ -11,7 +12,7 @@ const PaymentCustomerSlide = () => {
                     </div>
                 </div>
                 <div className='flex flex-col align-baseline font-[HelveticaNeueCyr] p-0 gap-[8px] w-[100%] sm:w-[394px] order-1'>
-                    <h3 className='font-[550] text-[16px] h-[22px] items-center flex text-[#000000] leading-[22px]'>Billi Design</h3>
+                    <SectionHeader text='Billi Design' />
                     <a href='https://bani.africa/billidesign' className='flex items-center order-1 text-[#65717C] font-[400] text-[14px] leading-[20px]'>
                         https://bani.africa/billidesign
                     </a>
