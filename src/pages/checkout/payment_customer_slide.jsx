@@ -2,6 +2,8 @@ import { AiOutlineShop } from 'react-icons/ai'
 import SectionHeader from '../../components/headings';
 
 const PaymentCustomerSlide = () => {
+
+
     return ( 
         <div className="flex flex-col align-start w-[100%] sm:w-[480px] h-[274px] bg-[#FFFFFF] gap-[16px]">
             <div className="px-[16px] pt-[24px] pb-[16px] box-border border-b-[0.5px] border-solid border-[#E1E1E1]

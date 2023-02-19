@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionHeader from "../../components/headings";
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
+import { useSelector } from "react-redux";
 
 const PaymentDetails = () => {
     var [count, setCount ] = useState(1)
+    const {paymentDetails, isLoading, isError, isSuccess, message } = useSelector((state)=> state.checkout)
+    const amount = Number(paymentDetails.page_amount)
+
+
+
+    useEffect(()=>{
+        // me = paymentDetails.page_amount
+
+    })
+
+
+
 
 
     return ( 
@@ -15,7 +28,7 @@ const PaymentDetails = () => {
                 <div onClick={()=> count  !==1 ? setCount(count--) : setCount(1)} className="minus_wrapper cursor-pointer flex items-center justify-center h-[40px] w-[40px] isolate rounded-full bg-[#5444F2]">
                 <AiOutlineMinus className="text-[#FFFFFF] text-[25px]" />
                 </div>
-                    <input type="tel" value={count} className="text-center font-[400] text-[16px] leading-[22px] 
+                    <input type="tel" value={count} className="text-center outline-0 font-[400] text-[16px] leading-[22px] 
                     text-[#c1c1c1 flex justify-center border-solid rounded-[8px] border-[0.5px] border-[#E1E1E1] w-[50px] h-[38px] items-center py-[8px] px-0" 
                     onChange={(e)=> setCount(e.target.value)}
                     />
@@ -30,10 +43,12 @@ const PaymentDetails = () => {
                     <span class="absolute flex font-[400] text-[#000000] text-[16px] leading-[22px] justify-center w-[52px] h-[44px] items-center p-[8px] bg-[#ECEBF4] rounded-l-[8px]">
                         NGN
                     </span>
-                    <input type="tel"  class="w-[90%] h-[42px] ml-[50px] items-center font-[400] text-[14px] leading-[20px] flex p-[8px] text-[#000000] text-right" />
+                    <input type="tel"  class="w-[90%] h-[42px] ml-[50px] outline-0 items-center font-[400] text-[14px] leading-[20px] flex p-[8px] text-[#000000] text-right"
+                    value={amount > 0 ? paymentDetails.page_amount : 0.00} 
+                    />
                 </div>
                 <button className="transition ease-in-out delay-100 hover:-translate-y-[2px] duration-300   flex gap-[16px] justify-center hover:shadow-xl leading-[18px] text-[#FFFFFF] font-[500] text-[14px]
-                 bg-[#5444F2] hover:bg-indigo-900 rounded-[8px]  items-center w-[100%] h-[44px] mt-[31px] mb-[24px] py-[13px]">Pay</button>
+                 bg-[#5444F2] hover:bg-indigo-900 rounded-[8px]  items-center w-[100%] h-[44px] mt-[31px] mb-[24px] py-[13px]">Pay {amount > 0 ? `(${paymentDetails.page_amount})` : null}</button>
             </div>
         </div>
      );

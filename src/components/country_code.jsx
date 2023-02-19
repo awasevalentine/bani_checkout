@@ -1,14 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { countryCodeBaseUrl } from "../api_calls/call_url";
 
 const CountryCallingCode = () => {
-    const url = 'https://restcountries.com/v2/all'
 const [countries, setCountries ] = useState([])
 const [countryImage, setCountryImage ] = useState()
 
     useEffect(()=>{
         const data = async()=>{
-         await axios.get(url).then((res)=>{
+            await countryCodeBaseUrl.get().then((res)=>{
             setCountries(res.data)
             setCountryImage(res.data[0].flags.png)
 
