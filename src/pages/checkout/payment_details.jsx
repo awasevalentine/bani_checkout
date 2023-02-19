@@ -32,7 +32,8 @@ const PaymentDetails = () => {
                     </span>
                     <input type="tel"  class="w-[90%] h-[42px] ml-[50px] items-center font-[400] text-[14px] leading-[20px] flex p-[8px] text-[#000000] text-right" />
                 </div>
-                <button className="flex gap-[16px] justify-center leading-[18px] text-[#FFFFFF] font-[500] text-[14px] bg-[#5444F2] rounded-[8px]  items-center w-[100%] h-[44px] mt-[31px] mb-[24px] py-[13px]">Pay</button>
+                <button className="transition ease-in-out delay-100 hover:-translate-y-[2px] duration-300   flex gap-[16px] justify-center hover:shadow-xl leading-[18px] text-[#FFFFFF] font-[500] text-[14px]
+                 bg-[#5444F2] hover:bg-indigo-900 rounded-[8px]  items-center w-[100%] h-[44px] mt-[31px] mb-[24px] py-[13px]">Pay</button>
             </div>
         </div>
      );
