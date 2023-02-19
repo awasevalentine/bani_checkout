@@ -7,7 +7,7 @@ const PaymentDetails = () => {
 
 
     return ( 
-        <div className="font-[HelveticaNeueCyr] flex flex-col py-[24px] px-[16px] gap-[32px] h-[338px] bg-[#FFFFFF]">
+        <div className="font-[HelveticaNeueCyr] flex flex-col h-[338px] py-[24px] px-[16px] gap-[32px] bg-[#FFFFFF]">
             <SectionHeader text='Payment for product ' />
             <div className="flex flex-row justify-between items-center p-0 gap-[8px] w-[100%] h-[40px]">
             <label className="w-[53px] font-[400] leading-[20px] text-[#000000]">Quantity</label>

@@ -11,23 +11,23 @@ const PaymentCustomerSlide = () => {
                         <AiOutlineShop />
                     </div>
                 </div>
-                <div className='flex flex-col align-baseline font-[HelveticaNeueCyr] p-0 gap-[8px] w-[100%] sm:w-[394px] order-1'>
+                <div className='flex flex-col align-baseline font-[HelveticaNeueCyr] p-0 gap-[8px] w-[100%] sm:w-[394px]'>
                     <SectionHeader text='Billi Design' />
-                    <a href='https://bani.africa/billidesign' className='flex items-center order-1 text-[#65717C] font-[400] text-[14px] leading-[20px]'>
+                    <a href='https://bani.africa/billidesign' className='flex items-center text-[#65717C] font-[400] text-[14px] leading-[20px]'>
                         https://bani.africa/billidesign
                     </a>
                     <div className='flex flex-col align-baseline font-[400] text-[14px] leading-[20px] py-[8px] gap-[8px] w-[100%] sm:w-[394px] bg-[#FDFDFD] order-2'>
                         <h2 className='flex items-center text-[#000000] h-[20px] '>
                             Payment description
                         </h2>
-                        <p className='w-[90%] sm:w-[381px] text-[#65717C] order-1'>
+                        <p className='w-[90%] sm:w-[381px] text-[#65717C]'>
                         Lorem ipsum dolor sit amet consectetur. Posuere elementum adipiscing a tincidunt in et nisi malesuada. 
                         Tellus nunc nibh tincidunt tristique pellentesque nulla morbi tortor.
                         </p>
                     </div>
                 </div>
             </div>
-            <div className='flex flex-row align-baseline pl-[16px] p-0 gap-[12px] h-[24px] order-1'>
+            <div className='flex flex-row align-baseline pl-[16px] p-0 gap-[12px] h-[24px]'>
                 <a href='#'>
                     <img src={require('../../assets/icons/instagram_icon.png')} alt='Instagram Icon' />
                 </a>
