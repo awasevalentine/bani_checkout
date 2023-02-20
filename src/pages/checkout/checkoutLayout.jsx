@@ -3,16 +3,13 @@ import Footer from "../../components/footer";
 import CustomersDetails from "./customer_details";
 import PaymentCustomerSlide from "./payment_customer_slide";
 import PaymentDetails from "./payment_details";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { getDetails } from "../../redux-features/checkout/checkout.slice";
 
 const CheckoutDefaultLayout = () => {
     const {page_ref:param} = useParams()
-    console.log("Here is param: ", param)
     const dispatch = useDispatch()
-
-
     
     useEffect(()=>{
         dispatch(getDetails('direct_payment_page_details/'+param))

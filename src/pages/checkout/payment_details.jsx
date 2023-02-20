@@ -1,27 +1,69 @@
 import { useEffect, useState } from "react";
 import SectionHeader from "../../components/headings";
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePaymentDetails } from "../../redux-features/checkout/checkout.slice";
 
+
+var initdata = {
+    page_amount: 0,
+    page_whatsapp_phone: '', 
+    email: '', 
+    firstName: '', 
+    lastName: '',
+    additional_request: '', 
+}
 const PaymentDetails = () => {
     var [count, setCount ] = useState(1)
-    const {paymentDetails, isLoading, isError, isSuccess, message } = useSelector((state)=> state.checkout)
-    const amount = Number(paymentDetails.page_amount)
+    const [paymentDetails, setPaymentDetails ] = useState(initdata)
+    const dispatch = useDispatch()
+    const {paymentDetails:rxData, isLoading, isError, isSuccess, message } = useSelector((state)=> state.checkout)
+    var initializedAmount = paymentDetails.page_amount
 
 
 
     useEffect(()=>{
-        // me = paymentDetails.page_amount
-
+        if(rxData){
+            setPaymentDetails(rxData)
+            initializedAmount = paymentDetails.page_amount
+        }
     })
 
+    const makePayment = () =>{
+        console.log("Datassss: ", paymentDetails)
+        window.BaniPopUp({
+        amount: paymentDetails.page_amount, //The amount the customer wants to pay
+        phoneNumber: paymentDetails.page_whatsapp_phone, //The mobile number of the customer in int format i.e +2348173709000
+        email: paymentDetails.email, //The email of the customer
+        firstName: paymentDetails.firstName, //The first name of the customer
+        lastName: paymentDetails.lastName, //The last name of the customer
+        merchantKey: process.env.REACT_APP_API_KEY, //The merchant Bani public key
+        metadata: paymentDetails.additional_request, //Custom JSON object passed by the merchant. This is optional
+        merchantRef: '', //Custom payment reference passed by the merchant. This is optional
+        onClose: (response) => {
+            console.log("ONCLOSE DATA",response)
+        },
+        callback: function (response) {
+            let message = 'Payment complete! Reference: ' + response?.reference
+            console.log(message, response)
+        }
+    })
+    }
 
-
+    const amountDisplay = () => {
+        if(initializedAmount > 0){
+            return `(${paymentDetails.page_amount})`
+        }else{
+            return ' '
+        }
+    }
 
 
     return ( 
         <div className="font-[HelveticaNeueCyr] flex flex-col h-[338px] py-[24px] px-[16px] gap-[32px] bg-[#FFFFFF]">
             <SectionHeader text='Payment for product ' />
+            {paymentDetails &&
+            <form>
             <div className="flex flex-row justify-between items-center p-0 gap-[8px] w-[100%] h-[40px]">
             <label className="w-[53px] font-[400] leading-[20px] text-[#000000]">Quantity</label>
             <div className="flex-row p-0 gap-[8px] inline-flex">
@@ -44,12 +86,14 @@ const PaymentDetails = () => {
                         NGN
                     </span>
                     <input type="tel"  class="w-[90%] h-[42px] ml-[50px] outline-0 items-center font-[400] text-[14px] leading-[20px] flex p-[8px] text-[#000000] text-right"
-                    value={amount > 0 ? paymentDetails.page_amount : 0.00} 
+                    value={initializedAmount > 0 ? paymentDetails.page_amount : null} onChange={(e)=> dispatch(updatePaymentDetails({...paymentDetails, page_amount: e.target.value }))}
                     />
                 </div>
-                <button className="transition ease-in-out delay-100 hover:-translate-y-[2px] duration-300   flex gap-[16px] justify-center hover:shadow-xl leading-[18px] text-[#FFFFFF] font-[500] text-[14px]
-                 bg-[#5444F2] hover:bg-indigo-900 rounded-[8px]  items-center w-[100%] h-[44px] mt-[31px] mb-[24px] py-[13px]">Pay {amount > 0 ? `(${paymentDetails.page_amount})` : null}</button>
+                <button type="button" onClick={()=> makePayment()}  className="transition ease-in-out delay-100 hover:-translate-y-[2px] duration-300   flex gap-[16px] justify-center hover:shadow-xl leading-[18px] text-[#FFFFFF] font-[500] text-[14px]
+                 bg-[#5444F2] hover:bg-indigo-900 rounded-[8px]  items-center w-[100%] h-[44px] mt-[31px] mb-[24px] py-[13px]">Pay {amountDisplay()} </button>
             </div>
+            </form>
+        }
         </div>
      );
 }

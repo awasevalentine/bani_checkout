@@ -31,7 +31,7 @@ const [countryImage, setCountryImage ] = useState()
 
 
     return ( 
-        <div class="relative flex box-border flex-row rounded-[8px] border-[#E1E1E1] border-[0.5px] border-solid 
+        <div className="relative flex box-border flex-row rounded-[8px] border-[#E1E1E1] border-[0.5px] border-solid 
             gap-[8px] w-[175px] items-center py-[8px] pr-[16px] pl-[8px]">
                 {<img src={countryImage} className="h-[20px] rounded-full w-[22px] border-solid border-[0.5px] border-[#E1E1E1] " alt="Flags" />}
             <select className="outline-0" onChange={(e)=> callingCodeChangeHandler(e.target.value)}>
